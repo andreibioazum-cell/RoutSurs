@@ -1,11 +1,21 @@
-Buildroot is a simple, efficient and easy-to-use tool to generate embedded
-Linux systems through cross-compilation.
+RoutSurs
+========
 
-The documentation can be found in docs/manual. You can generate a text
-document with 'make manual-text' and read output/docs/manual/manual.text.
-Online documentation can be found at https://buildroot.org/docs.html
+RoutSurs is an operating-system build framework for embedded and
+network-oriented devices.  It cross-compiles a complete Linux system - from
+the toolchain up to the root filesystem, the kernel and the bootloader - from
+a single configuration file.
 
-To build and use the buildroot stuff, do the following:
+RoutSurs is a downstream distribution based on Buildroot.  The build engine,
+the package infrastructure and the bulk of the board support are the work of
+the Buildroot developers; RoutSurs adds its own name, versioning, branding and
+default configurations on top of that.  Upstream copyright notices and the
+license in COPYING are kept unchanged - see the NOTICE file for details.
+
+Quick start
+-----------
+
+To build and use RoutSurs, do the following:
 
 1) run 'make menuconfig'
 2) select the target architecture and the packages you wish to compile
@@ -13,14 +23,36 @@ To build and use the buildroot stuff, do the following:
 4) wait while it compiles
 5) find the kernel, bootloader, root filesystem, etc. in output/images
 
-You do not need to be root to build or run buildroot.  Have fun!
+You do not need to be root to build or run RoutSurs.  Have fun!
 
-Buildroot comes with a basic configuration for a number of boards. Run
-'make list-defconfigs' to view the list of provided configurations.
+RoutSurs comes with a basic configuration for a number of boards. Run
+'make list-defconfigs' to view the list of provided configurations, or start
+from the RoutSurs defaults with:
 
-Please feed suggestions, bug reports, insults, and bribes back to the
-buildroot mailing list: buildroot@buildroot.org
-You can also find us on #buildroot on OFTC IRC.
+    make routsurs_qemu_aarch64_defconfig
+    make
 
-If you would like to contribute patches, please read
-https://buildroot.org/manual.html#submitting-patches
+Documentation
+-------------
+
+The documentation lives in docs/manual.  You can generate a text document
+with 'make manual-text' and read output/docs/manual/manual.text.
+
+Branding
+--------
+
+The name of the produced operating system is defined in one place: the
+BRAND_NAME / BRAND_ID / BRAND_VERSION variables at the top of the Makefile.
+They are used for the kconfig main menu, /etc/issue, /etc/os-release, the help
+text and the release tarball name.  See BRANDING.md for the full list of
+user-visible branding points and for the rules about attribution.
+
+Contributing, bugs and licensing
+--------------------------------
+
+* Repository: https://github.com/andreibioazum-cell/RoutSurs
+* Bug reports and patches: GitHub issues / pull requests in the repository
+  above.
+* License: GNU General Public License version 2 or later, see COPYING.
+* Upstream project: https://buildroot.org - please report bugs that also
+  reproduce with an unmodified Buildroot to the Buildroot project instead.

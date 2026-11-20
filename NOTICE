@@ -1,0 +1,81 @@
+RoutSurs - NOTICE and attribution
+=================================
+
+RoutSurs is a downstream distribution built on top of Buildroot.
+
+Upstream project
+----------------
+
+    Buildroot - a simple, efficient and easy-to-use tool to generate
+    embedded Linux systems through cross-compilation.
+
+    Home page: https://buildroot.org
+    Sources:   https://gitlab.com/buildroot.org/buildroot
+    Contact:   buildroot@buildroot.org
+
+Copyright (C) The Buildroot developers <buildroot@buildroot.org>
+
+License
+-------
+
+RoutSurs, like Buildroot, is distributed under the terms of the GNU General
+Public License, version 2 or (at your option) any later version.  The full
+license text is in the COPYING file, which is kept verbatim.
+
+Every source file, patch and package recipe in this tree keeps its original
+copyright header and license.  Rebranding does not remove, replace or
+reassign authorship: the copyright of the Buildroot code remains with the
+Buildroot developers and with the individual contributors named in the file
+headers, in DEVELOPERS and in .mailmap.
+
+Fork-specific changes
+---------------------
+
+The RoutSurs maintainers hold the copyright only on the fork-specific
+changes listed below and on new files added by the fork (this NOTICE,
+BRANDING.md, the RoutSurs README and the RoutSurs default configuration).
+
+Branding changes:
+
+  * Makefile: BRAND_NAME/BRAND_ID/BRAND_VERSION variables; /etc/os-release
+    generation (NAME/ID/ID_LIKE/VERSION/PRETTY_NAME/BUILDROOT_VERSION);
+    release tarball name; help text and the "please configure" message.
+  * Config.in: kconfig main menu now reads "RoutSurs <version> Configuration".
+  * system/Config.in: default hostname is "routsurs", default system banner is
+    "Welcome to RoutSurs".
+  * README, SECURITY.md, .b4-config, .github/, .gitlab/issue_templates/,
+    docs/manual/manual.adoc and docs/manual/introduction.adoc: project name,
+    contacts and links.
+  * utils/check-package, utils/generate-cyclonedx and
+    support/dependencies/dependencies.sh: user-visible messages and the
+    default SBOM project name ("routsurs").
+  * docs/website/images/routsurs-logo.png: new RoutSurs logo, used by the
+    manual; the original Buildroot logo is kept untouched.
+  * configs/routsurs_qemu_aarch64_defconfig: new default configuration.
+
+Fork-specific removals:
+
+  * .github/workflows/repo-lockdown.yml and .gitlab-ci.yml: upstream-only
+    infrastructure (a GitHub PR auto-closer pointing at the Buildroot mailing
+    list, and a GitLab CI pipeline using the buildroot.org container registry).
+    They cannot work in this repository and would mislead contributors; the
+    upstream files remain available in the Buildroot history.
+
+What was deliberately NOT renamed:
+
+  * BR2_* kconfig symbols, directory layout, make targets, package
+    infrastructures and the BR2_EXTERNAL mechanism.  They are the stable
+    interface of the build engine and are shared with upstream Buildroot.
+  * Technical documentation and comments that describe how the Buildroot
+    build engine works, and package recipes/patches for third-party software.
+  * COPYING, DEVELOPERS, .mailmap, CHANGES and support/legal-info/*.
+
+Keeping those intact is what makes it possible to keep merging upstream
+Buildroot releases into RoutSurs, and it keeps the attribution accurate.
+
+Trademarks
+----------
+
+"Buildroot" is used only to factually describe the origin of this software.
+RoutSurs is not endorsed by, and is not an official release of, the Buildroot
+project.

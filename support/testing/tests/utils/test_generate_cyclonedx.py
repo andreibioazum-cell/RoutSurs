@@ -138,7 +138,7 @@ class TestGenerateCycloneDX(unittest.TestCase):
         bar_deps = next(d for d in result["dependencies"] if d["ref"] == "package-bar")
         self.assertEqual(bar_deps["dependsOn"], ["package-foo"])
 
-        project_deps = next(d for d in result["dependencies"] if d["ref"] == "buildroot")
+        project_deps = next(d for d in result["dependencies"] if d["ref"] == "routsurs")
         self.assertEqual(project_deps["dependsOn"], ["host-tool", "package-foo"])
 
     def test_virtual(self):

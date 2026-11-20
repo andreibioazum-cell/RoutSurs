@@ -1,38 +1,40 @@
 # Security Policy
 
- [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12245/badge)](https://www.bestpractices.dev/projects/12245)
+## RoutSurs
 
-## Security advisories
+RoutSurs is a downstream distribution based on Buildroot.  Vulnerabilities
+that are specific to RoutSurs (branding, default configurations, the
+`routsurs_*` defconfigs, the `BRAND_*` handling, this repository's scripts)
+should be reported privately to the RoutSurs maintainers through GitHub
+security advisories:
 
-Advisories for Buildroot security vulnerabilities are reported on the
-developer's mailing list. A public archive can be consulted on
-https://lists.buildroot.org/mailman/listinfo/buildroot
+https://github.com/andreibioazum-cell/RoutSurs/security/advisories/new
 
-Buildroot itself has a CPE to track its published vulnerabilities:
-https://nvd.nist.gov/products/cpe/search/results?namingFormat=2.3&keyword=buildroot
+Please do not open a public issue for a security problem.
 
-The Buildroot project provides some ways for its users to track known
-vulnerabilites in the packages included in the generated images, see:
+## Buildroot
+
+The build engine, the package infrastructure and the package recipes are
+upstream Buildroot code.  Vulnerabilities in that code affect upstream as
+well, and should be reported upstream following the Buildroot security
+policy:
+
+- Advisories and discussion: https://lists.buildroot.org/mailman/listinfo/buildroot
+- CPE: https://nvd.nist.gov/products/cpe/search/results?namingFormat=2.3&keyword=buildroot
+- Upstream contact: security@buildroot.org (Buildroot maintainers only)
+
+Upstream resources for tracking known vulnerabilities in the packages
+included in generated images:
+
 - https://nightly.buildroot.org/manual.html#_details_about_packages
-
-In addition, detailed informations for all packages integrated with Buildroot
-are updated daily on the following public web pages:
 - https://security.buildroot.org/
 - https://autobuild.buildroot.org/stats/
 
-## Reporting a Vulnerability
-
-To report a security vulnerability found in the Buildroot build system itself,
-please send an email to [security@buildroot.org](mailto:security@buildroot.org).
-
-This is a private mailing list contacting the Buildroot maintainers only.
-
 ## Vulnerabilities in packages
 
-Buildroot is a build system that cross-compiles packages from third-party
-sources. The Buildroot developers are not responsible for security
-vulnerabilities in these packages. Such vulnerabilities should be reported
-directly to the upstream project that maintains the affected package.
-
-When vulnerabilities are fixed upstream, send a patch to update the affected
-packages in Buildroot.
+RoutSurs, like Buildroot, is a build system that cross-compiles packages from
+third-party sources.  The maintainers are not responsible for security
+vulnerabilities in those packages; report them to the upstream project that
+maintains the affected package.  When a fix is available, a patch updating the
+affected package can be sent to this repository (GitHub pull request) or to
+upstream Buildroot.
