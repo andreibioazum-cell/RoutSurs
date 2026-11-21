@@ -51,7 +51,7 @@ Branding changes:
     default SBOM project name ("routsurs").
   * docs/website/images/routsurs-logo.png: new RoutSurs logo, used by the
     manual; the original Buildroot logo is kept untouched.
-  * configs/routsurs_qemu_aarch64_defconfig: new default configuration.
+  * configs/routsurs_aarch64_defconfig: new default configuration.
 
 Fork-specific removals:
 

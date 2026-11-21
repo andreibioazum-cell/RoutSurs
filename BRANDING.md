@@ -39,7 +39,7 @@ Where the brand is visible
 
 Per-board configurations in `configs/` may still carry their own banner; only
 the defaults in `system/Config.in` and the new
-`configs/routsurs_qemu_aarch64_defconfig` are RoutSurs-branded.
+`configs/routsurs_aarch64_defconfig` are RoutSurs-branded.
 
 Adding a new board
 ------------------

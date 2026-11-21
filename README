@@ -29,7 +29,7 @@ RoutSurs comes with a basic configuration for a number of boards. Run
 'make list-defconfigs' to view the list of provided configurations, or start
 from the RoutSurs defaults with:
 
-    make routsurs_qemu_aarch64_defconfig
+    make routsurs_aarch64_defconfig
     make
 
 Documentation

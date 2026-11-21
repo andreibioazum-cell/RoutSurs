@@ -17,9 +17,9 @@ permissions:
 
 jobs:
   qemu-aarch64:
-    name: RoutSurs image (qemu aarch64)
+    name: RoutSurs image (aarch64)
     runs-on: ubuntu-24.04
-    timeout-minutes: 330
+    timeout-minutes: 240
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,7 +32,7 @@ jobs:
             bzip2 xz-utils python3 libncurses-dev
 
       - name: Configure
-        run: make routsurs_qemu_aarch64_defconfig
+        run: make routsurs_aarch64_defconfig
 
       - name: Build
         run: make -j"$(nproc)"
@@ -57,7 +57,7 @@ jobs:
       - name: Upload image
         uses: actions/upload-artifact@v4
         with:
-          name: routsurs-qemu-aarch64
+          name: routsurs-aarch64
           if-no-files-found: error
           retention-days: 14
           path: |
