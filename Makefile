@@ -1,4 +1,8 @@
-# Makefile for buildroot
+# Makefile for RoutSurs
+#
+# RoutSurs is a downstream distribution based on Buildroot.  The upstream
+# copyright notices below, and all other copyright notices in this tree, are
+# kept unchanged; the fork-specific changes are described in NOTICE.
 #
 # Copyright (C) the Buildroot developers <buildroot@buildroot.org>
 #
@@ -91,10 +95,24 @@ else # umask / $(CURDIR) / $(O)
 all:
 .PHONY: all
 
-# Set and export the version string
+# Set and export the version string.  BR2_VERSION tracks the upstream
+# Buildroot release this tree is based on; the distribution version is
+# BRAND_VERSION below.
 export BR2_VERSION := 2026.11-rc1
 # Actual time the release is cut (for reproducible builds)
 BR2_VERSION_EPOCH = 1794668000
+
+# Distribution branding.
+#
+# These variables are the single place where the name of the produced
+# operating system is defined.  They feed the kconfig main menu, the system
+# banner, /etc/os-release, the help text and the release tarball name.
+# Do not override them: a build must always identify itself as RoutSurs, so
+# that images and SBOMs are traceable.
+BRAND_NAME := RoutSurs
+BRAND_ID := routsurs
+BRAND_VERSION := 1.0.0
+export BRAND_NAME BRAND_ID BRAND_VERSION
 
 # Save running make version since it's clobbered by the make package
 RUNNING_MAKE_VERSION := $(MAKE_VERSION)
@@ -784,11 +802,13 @@ endif
 		{ echo "ERROR: we shouldn't have a /etc/ld.so.conf.d directory"; exit 1; } || true
 	mkdir -p $(TARGET_DIR)/etc
 	( \
-		echo "NAME=Buildroot"; \
-		echo "VERSION=$(BR2_VERSION_FULL)"; \
-		echo "ID=buildroot"; \
-		echo "VERSION_ID=$(BR2_VERSION)"; \
-		echo "PRETTY_NAME=\"Buildroot $(BR2_VERSION)\"" \
+		echo "NAME=$(BRAND_NAME)"; \
+		echo "VERSION=\"$(BRAND_VERSION) (Buildroot $(BR2_VERSION))\""; \
+		echo "ID=$(BRAND_ID)"; \
+		echo "ID_LIKE=buildroot"; \
+		echo "VERSION_ID=$(BRAND_VERSION)"; \
+		echo "PRETTY_NAME=\"$(BRAND_NAME) $(BRAND_VERSION) (Buildroot $(BR2_VERSION))\""; \
+		echo "BUILDROOT_VERSION=\"$(BR2_VERSION_FULL)\""; \
 	) >  $(TARGET_DIR)/usr/lib/os-release
 	ln -sf ../usr/lib/os-release $(TARGET_DIR)/etc
 
@@ -859,7 +879,7 @@ legal-info-clean:
 
 .PHONY: legal-info-prepare
 legal-info-prepare: $(LEGAL_INFO_DIR)
-	@$(call MESSAGE,"Buildroot $(BR2_VERSION_FULL) Collecting legal info")
+	@$(call MESSAGE,"$(BRAND_NAME) $(BRAND_VERSION) Collecting legal info")
 	@$(call legal-license-file,HOST,buildroot,buildroot,COPYING,COPYING,support/legal-info/buildroot.hash)
 	@$(call legal-manifest,TARGET,PACKAGE,VERSION,LICENSE,LICENSE FILES,SOURCE ARCHIVE,SOURCE SITE,DEPENDENCIES WITH LICENSES)
 	@$(call legal-manifest,HOST,PACKAGE,VERSION,LICENSE,LICENSE FILES,SOURCE ARCHIVE,SOURCE SITE,DEPENDENCIES WITH LICENSES)
@@ -971,7 +991,7 @@ else # ifeq ($(BR2_HAVE_DOT_CONFIG),y)
 # Also for 'all' we error out and ask the user to configure first.
 .PHONY: linux toolchain
 linux toolchain all: outputmakefile
-	$(error Please configure Buildroot first (e.g. "make menuconfig"))
+	$(error Please configure $(BRAND_NAME) first (e.g. "make menuconfig"))
 	@exit 1
 
 endif # ifeq ($(BR2_HAVE_DOT_CONFIG),y)
@@ -1220,7 +1240,7 @@ help:
 	@echo '  external-deps          - list external packages used'
 	@echo '  legal-info             - generate info about license compliance'
 	@echo '  show-info              - generate info about packages, as a JSON blurb'
-	@echo '  show-info-all          - generate info about all packages in Buildroot,'
+	@echo '  show-info-all          - generate info about all packages in $(BRAND_NAME),'
 	@echo '                           regardless of configuration or target architecture'
 	@echo '  pkg-stats              - generate info about packages as JSON and HTML'
 	@echo '  printvars              - dump internal variables selected with VARS=...'
@@ -1230,8 +1250,8 @@ help:
 	@echo '  make V=0|1             - 0 => quiet build (default), 1 => verbose build'
 	@echo '  make O=dir             - Locate all output files in "dir", including .config'
 	@echo
-	@echo 'For further details, see README, generate the Buildroot manual, or consult'
-	@echo 'it on-line at http://buildroot.org/docs.html'
+	@echo 'For further details, see README, generate the $(BRAND_NAME) manual, or consult'
+	@echo 'it on-line at https://github.com/andreibioazum-cell/RoutSurs'
 	@echo
 
 # List the defconfig files
@@ -1264,7 +1284,7 @@ list-defconfigs:
 		$(call list-defconfigs,$(BR2_EXTERNAL_$(name)_PATH),\
 			$(BR2_EXTERNAL_$(name)_DESC))$(sep))
 
-release: OUT = buildroot-$(BR2_VERSION)
+release: OUT = $(BRAND_ID)-$(BRAND_VERSION)
 
 # Create release tarballs. We need to fiddle a bit to add the generated
 # documentation to the git output

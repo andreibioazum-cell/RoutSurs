@@ -529,9 +529,9 @@ def br2_root_deps(show_info_dict, virtual=False) -> list:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Create a CycloneDX SBoM for the Buildroot configuration.",
+        description="Create a CycloneDX SBoM for the RoutSurs configuration.",
         usage="make show-info | utils/%(prog)s > sbom.json",
-        epilog="For more information see https://buildroot.org/downloads/manual/manual.html#_generating_cyclonedx_sbom",
+        epilog="For more information see the RoutSurs manual: https://github.com/andreibioazum-cell/RoutSurs",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
     parser.add_argument("-i", "--in-file", nargs="?", type=argparse.FileType("r"),
@@ -540,7 +540,7 @@ def main():
                         default=sys.stdout)
     parser.add_argument("--virtual", action='store_true',
                         help="This option includes virtual packages to the CycloneDX output")
-    parser.add_argument("--project-name", type=str, default="buildroot",
+    parser.add_argument("--project-name", type=str, default="routsurs",
                         help="Specify the project name to use in the SBOM metadata")
     parser.add_argument("--project-version", type=str, default=f"{BR2_VERSION_FULL}",
                         help="Specify the project version to use in the SBOM metadata")
@@ -582,7 +582,7 @@ def main():
                 "components": [
                     {
                         "type": "application",
-                        "name": "Buildroot generate-cyclonedx",
+                        "name": "RoutSurs generate-cyclonedx",
                         "version": f"{BR2_VERSION_FULL}",
                         "licenses": [
                             {

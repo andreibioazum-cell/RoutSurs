@@ -93,8 +93,8 @@ def parse_args():
     parser.add_argument("--failed-only", action="store_true", help="print only"
                         " the name of the functions that failed (debug)")
     parser.add_argument("--patch", "-p", action="store_true",
-                        help="The 'files' are patch files to be sent to the"
-                        " Buildroot mailing list")
+                        help="The 'files' are patch files to be sent as a"
+                        " RoutSurs pull request")
 
     parser.add_argument("--test-suite", action="store_true", help="Run the"
                         " test-suite")

@@ -1,20 +1,27 @@
 // -*- mode:doc; -*-
 // vim: set syntax=asciidoc:
 
-= The Buildroot user manual
+= The RoutSurs user manual
 :toc:
 
-Buildroot {sys:echo $BR2_VERSION} manual generated on {localdate}
+RoutSurs {sys:echo $BR2_VERSION} manual generated on {localdate}
 {localtime} from git revision {sys:git rev-parse --short HEAD}
 
-The Buildroot manual is written by the Buildroot developers.
-It is licensed under the GNU General Public License, version 2. Refer to the
-https://gitlab.com/buildroot.org/buildroot/-/blob/master/COPYING[COPYING]
-file in the Buildroot sources for the full text of this license.
+RoutSurs is a downstream distribution based on Buildroot, and this manual is
+derived from the Buildroot manual. The build engine described here is the
+Buildroot build engine, so most of the documentation refers to Buildroot
+behaviour and keeps the upstream terminology (`BR2_*` options, br2-external
+trees, the Buildroot manual, ...).
+
+The manual is written by the Buildroot developers, with the RoutSurs
+branding changes added by the RoutSurs maintainers. It is licensed under the
+GNU General Public License, version 2. Refer to the
+https://github.com/andreibioazum-cell/RoutSurs/blob/master/COPYING[COPYING]
+file in the RoutSurs sources for the full text of this license.
 
 Copyright (C) The Buildroot developers <buildroot@buildroot.org>
 
-image::logo.png[]
+image::routsurs-logo.png[]
 
 = Getting started
 

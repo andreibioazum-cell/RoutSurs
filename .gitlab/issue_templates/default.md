@@ -2,8 +2,10 @@ Thank you for opening a new issue. To help solve it faster and more easily,
 please review this check-list, and fill in the sections below. Adapt as
 needed.
 
-Do not open an issue to request a new feature; instead, post a message to
-[the mailing list](https://lists.buildroot.org/mailman/listinfo/buildroot).
+Issues are tracked on GitHub:
+https://github.com/andreibioazum-cell/RoutSurs/issues
+Do not open an issue to request a new feature; open a discussion or a pull
+request instead.
 
 _Note: issues missing any information may get closed without further ado._
 
@@ -11,9 +13,9 @@ _Note: issues missing any information may get closed without further ado._
 ### Check-list
 
 - [ ] I did not find the issue in the existing issues
-- [ ] I can reproduce the issue with unmodified Buildroot from [this
-      repository](https://gitlab.com/buildroot.org/buildroot), not from a
-      fork somewhere else
+- [ ] I can reproduce the issue with the current RoutSurs sources from [this
+      repository](https://github.com/andreibioazum-cell/RoutSurs), not from a
+      local modification on top of it
 - [ ] I can reproduce the issue on the latest commit of the branch I'm using:
     - [ ] master
     - [ ] stable (i.e. 20NN.MM.x - please specify)
@@ -33,7 +35,8 @@ _Note: issues missing any information may get closed without further ado._
 ---
 ### What I did
 
-- **Buildroot commit sha1**: _get this with `git describe HEAD`_
+- **RoutSurs / Buildroot commit sha1**: _get this with `git describe HEAD`_
+- **RoutSurs version**: _get this with `make print-version`_
 - **Distribution of the build machine**: _get this with `NAME` and `VERSION` from `/etc/os-release`_
 
 _Here, describe what you did:_

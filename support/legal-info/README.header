@@ -1,12 +1,13 @@
-Most of the packages that were used by Buildroot to produce the image files,
-including Buildroot itself, have open-source licenses. It is your
+Most of the packages that were used by RoutSurs (a distribution based on
+Buildroot) to produce the image files, including Buildroot itself, have
+open-source licenses. It is your
 responsibility to comply to the requirements of these licenses.
-To make this easier for you, Buildroot collected in this directory some
+To make this easier for you, RoutSurs collected in this directory some
 material you may need to get it done.
 
 This material is composed of the following items.
  * The scripts used to control compilation of the packages and the generation
-   of image files, i.e. the Buildroot sources.
+   of image files, i.e. the RoutSurs sources (derived from Buildroot).
    Note: this has not been saved due to technical limitations, you must
    collect it manually.
  * The Buildroot configuration file; this has been saved in buildroot.config.

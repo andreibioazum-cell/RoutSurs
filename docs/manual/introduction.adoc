@@ -1,7 +1,14 @@
 // -*- mode:doc; -*-
 // vim: set syntax=asciidoc:
 
-== About Buildroot
+== About RoutSurs
+
+RoutSurs is a distribution that simplifies and automates the process of
+building a complete Linux system for an embedded or network device, using
+cross-compilation. It is based on Buildroot and uses the Buildroot build
+engine, package infrastructure and board support; the rest of this manual
+therefore describes the shared engine and is, to a large extent, also valid
+for upstream Buildroot.
 
 Buildroot is a tool that simplifies and automates the process of
 building a complete Linux system for an embedded system, using

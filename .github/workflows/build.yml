@@ -1,0 +1,71 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+      - 'arena/**'
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  routsurs-aarch64:
+    name: RoutSurs image (aarch64)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential file bc cpio rsync wget curl git unzip \
+            bzip2 xz-utils python3 libncurses-dev
+
+      - name: Configure
+        run: make routsurs_aarch64_defconfig
+
+      - name: Build
+        run: make -j"$(nproc)"
+
+      - name: Verify the distribution identity
+        run: |
+          set -eu
+          echo '--- /etc/os-release'
+          cat output/target/etc/os-release
+          echo '--- /etc/issue'
+          cat output/target/etc/issue
+          echo '--- /etc/hostname'
+          cat output/target/etc/hostname
+          echo '--- images'
+          ls -lh output/images
+          grep -qx 'NAME=RoutSurs' output/target/etc/os-release
+          grep -qx 'ID=routsurs' output/target/etc/os-release
+          grep -q 'Welcome to RoutSurs' output/target/etc/issue
+          test "$(cat output/target/etc/hostname)" = routsurs
+          test -s output/images/Image
+          test -s output/images/rootfs.ext4
+          test -s output/images/rootfs.tar
+          test ! -e output/images/start-qemu.sh
+          grep -qx '# BR2_PACKAGE_HOST_QEMU is not set' .config
+
+      - name: Upload image
+        uses: actions/upload-artifact@v4
+        with:
+          name: routsurs-aarch64
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            output/images/*
+            output/target/etc/os-release
+            output/target/etc/issue
+            output/target/etc/hostname
