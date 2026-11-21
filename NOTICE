@@ -52,6 +52,9 @@ Branding changes:
   * docs/website/images/routsurs-logo.png: new RoutSurs logo, used by the
     manual; the original Buildroot logo is kept untouched.
   * configs/routsurs_aarch64_defconfig: new default configuration.
+  * board/routsurs/aarch64/: kernel configuration and source hashes copied
+    unchanged from the upstream aarch64 virt board, retaining their original
+    attribution; these files are not claimed as original RoutSurs work.
 
 Fork-specific removals:
 

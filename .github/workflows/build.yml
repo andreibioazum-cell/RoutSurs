@@ -16,7 +16,7 @@ permissions:
   contents: read
 
 jobs:
-  qemu-aarch64:
+  routsurs-aarch64:
     name: RoutSurs image (aarch64)
     runs-on: ubuntu-24.04
     timeout-minutes: 240
@@ -53,6 +53,10 @@ jobs:
           grep -q 'Welcome to RoutSurs' output/target/etc/issue
           test "$(cat output/target/etc/hostname)" = routsurs
           test -s output/images/Image
+          test -s output/images/rootfs.ext4
+          test -s output/images/rootfs.tar
+          test ! -e output/images/start-qemu.sh
+          grep -qx '# BR2_PACKAGE_HOST_QEMU is not set' .config
 
       - name: Upload image
         uses: actions/upload-artifact@v4
